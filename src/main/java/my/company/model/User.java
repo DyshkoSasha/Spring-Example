@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Table(name = "users")
 @Entity
-
+//todo опять какие-то пробелы. и подлючи ломбок
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
