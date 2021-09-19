@@ -19,7 +19,7 @@ import java.util.Properties;
 @ComponentScan("my.company")
 @EnableJpaRepositories("my.company.repository")
 public class SpringConfig {
-
+//todo сделай логирование в сервисе
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em
