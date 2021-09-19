@@ -31,7 +31,7 @@ public class Main {
 //        userServiceImpl.deletedAll();
 //
 //        List<User> listUsers = userServiceImpl.selectAll();
-//        System.out.println(listUsers);
+//        System.out.println(listUsers); //todo разве так выводится список???
 
         User user5 = userServiceImpl.selectedOnId(152);
         System.out.println(user5);
@@ -40,6 +40,6 @@ public class Main {
 //        userServiceImpl.addUser(user6);
 
 
-
+//todo они везде
     }
 }
