@@ -34,10 +34,10 @@ public class Main {
 //        List<User> listUsers = userServiceImpl.selectAll();
 //        listUsers.forEach(System.out::println);
 
-        User user5 = userServiceImpl.selectedById(15);
-        System.out.println(user5);
+//        User user5 = userServiceImpl.selectedById(15);
+//        System.out.println(user5);
 
-//        User user6 = new User(52,"sashaLOH", "sorokaLOH", 97);
-//        userServiceImpl.addUser(user6);
+        User user6 = new User(202,"sashaLOH", "sorokaLOH", 97);
+        userServiceImpl.addUser(user6);
     }
 }

@@ -14,13 +14,12 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
 import java.util.Properties;
-import java.util.logging.Logger;
+
 
 @Configuration
 @ComponentScan("my.company")
 @EnableJpaRepositories("my.company.repository")
 public class SpringConfig {
-    Logger log = Logger.getLogger(SpringConfig.class.getName());
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em
@@ -31,17 +30,16 @@ public class SpringConfig {
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
         em.setJpaProperties(additionalProperties());
-        log.info("CONECTED CONFIG");
         return em;
     }
 
     @Bean
-    public DataSource dataSource(){
+    public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
         dataSource.setUrl("jdbc:postgresql://localhost:5432/pred_project");
-        dataSource.setUsername( "alex" );
-        dataSource.setPassword( "alex" );
+        dataSource.setUsername("alex");
+        dataSource.setPassword("alex");
         return dataSource;
     }
 
@@ -53,7 +51,6 @@ public class SpringConfig {
     }
 
 
-
     @Bean
     public PlatformTransactionManager transactionManager() {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
@@ -62,7 +59,7 @@ public class SpringConfig {
     }
 
     @Bean
-    public PersistenceExceptionTranslationPostProcessor exceptionTranslation(){
+    public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
         return new PersistenceExceptionTranslationPostProcessor();
     }
 }
