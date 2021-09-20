@@ -1,31 +1,28 @@
 package my.company.service;
 
+import lombok.RequiredArgsConstructor;
 import my.company.model.User;
 import my.company.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Transactional //todo  у этой транзакции есть параметра, и для методов чтения его нужно поставить
+@RequiredArgsConstructor
+@Transactional
 @Service
-public class UserServiceImpl implements UserService{//todo почитай про кодстайл, он у тебя хромает
+public class UserServiceImpl implements UserService{        //todo почитай про кодстайл, он у тебя хромает
     private final UserRepository userRepository;
-//todo сейчас на всех почти проектах есть ломбок, исправь все с ломбоком
-    @Autowired
-    public UserServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
 
     @Override
+    @Transactional(readOnly = true)
     public void addUser(User user) {
         userRepository.save(user);
     }
 
     @Override
-    public void deletedOnId(Integer id) {// todo про названия написал в интерфейсе
+    @Transactional(readOnly = true)
+    public void deletedById(Integer id) {
         userRepository.deleteById(id);
     }
 
@@ -35,14 +32,13 @@ public class UserServiceImpl implements UserService{//todo почитай про
     }
 
     @Override
-    public User selectedOnId(Integer id) {
-       return userRepository.findById(id).orElse(new User());//todo прочитай про optional и посмотри что он тебе вернет если юзера не будет с таким айди и поймешь что это гамно
+    public User selectedById(Integer id) throws NoEntityException {
+       return userRepository.findById(id).orElseThrow(() -> new NoEntityException("GAMNISCHE"));
     }
 
     @Override
+    @Transactional(readOnly = true)
     public void deletedAll() {
         userRepository.deleteAll();
     }
-//todo посмотри пробелы везде, сделай по-людски а не на скорую руку
-
 }

@@ -6,6 +6,7 @@ import my.company.model.User;
 import my.company.service.UserService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import java.util.List;
 import java.util.Optional;
 
 public class Main {
@@ -27,19 +28,16 @@ public class Main {
 //        userServiceImpl.addUser(user2);
 //        userServiceImpl.addUser(user3);
 
-//        userServiceImpl.deletedOnId(1);
+//        userServiceImpl.deletedById(1);
 //        userServiceImpl.deletedAll();
 //
 //        List<User> listUsers = userServiceImpl.selectAll();
-//        System.out.println(listUsers); //todo разве так выводится список???
+//        listUsers.forEach(System.out::println);
 
-        User user5 = userServiceImpl.selectedOnId(152);
+        User user5 = userServiceImpl.selectedById(15);
         System.out.println(user5);
 
 //        User user6 = new User(52,"sashaLOH", "sorokaLOH", 97);
 //        userServiceImpl.addUser(user6);
-
-
-//todo они везде
     }
 }

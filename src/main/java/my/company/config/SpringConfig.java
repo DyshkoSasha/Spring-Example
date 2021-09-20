@@ -14,12 +14,13 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 @Configuration
 @ComponentScan("my.company")
 @EnableJpaRepositories("my.company.repository")
 public class SpringConfig {
-//todo сделай логирование в сервисе
+    Logger log = Logger.getLogger(SpringConfig.class.getName());
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em
@@ -30,7 +31,7 @@ public class SpringConfig {
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
         em.setJpaProperties(additionalProperties());
-
+        log.info("CONECTED CONFIG");
         return em;
     }
 
@@ -50,6 +51,8 @@ public class SpringConfig {
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
         return properties;
     }
+
+
 
     @Bean
     public PlatformTransactionManager transactionManager() {
