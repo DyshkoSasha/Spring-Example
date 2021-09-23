@@ -24,11 +24,16 @@ public class User {
     private String lastName;
     @Column(name = "age")
     private int age;
+    @OneToOne(cascade = CascadeType.ALL)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JoinColumn(name = "id_adress_user")
+    private Adress adress;
 
-    public User(String firstName, String lastName, int age) {
+    public User(String firstName, String lastName, int age, Adress adress) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
+        this.adress = adress;
     }
 
     @Override
